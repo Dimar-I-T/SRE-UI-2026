@@ -13,7 +13,6 @@ export default function SummitInfo() {
           priority
           className="object-cover object-bottom opacity-60 pointer-events-none" 
         />
-        {/* Soft white overlay to ensure text/logo legibility */}
         <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>
       </div>
 
