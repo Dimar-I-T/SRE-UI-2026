@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import React from 'react';
 import Image from 'next/image';
 import HeroBanner from '@/components/HeroBanner';
@@ -8,6 +9,7 @@ const AllArticlePage = async () => {
   const articles = await getAllArticles();
   const recommended = await getRecommendedArticles();
   const topFeatured = recommended[0];
+  console.log("ARTICLES:", articles);
 
   return (
     <main className="relative min-h-screen bg-[#FFFFFF] font-['Open_Sans'] overflow-hidden">
