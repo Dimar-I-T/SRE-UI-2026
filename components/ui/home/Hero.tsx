@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-[80vh] flex items-center justify-center bg-[#1b4f43] overflow-hidden">
+    <section className="relative w-full min-h-[80vh] md:h-[600px] flex items-center justify-center bg-[#1b4f43] overflow-hidden">
       <Image 
         src="/herobg.svg" 
         alt="Wind turbines background" 
         fill 
         priority
-        className="object-cover opacity-30 mix-blend-soft-light pointer-events-none z-0" 
+        className="object-cover opacity-30 mix-blend-soft-light pointer-events-none z-0 scale-x-[-1]" 
       />
 
       <div className="absolute inset-x-0 top-0 h-[60%] bg-gradient-to-b from-[#105D48] to-transparent z-10 pointer-events-none"></div>
