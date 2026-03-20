@@ -71,7 +71,7 @@ export default function WhatWeDo() {
 
       <div
         ref={emblaRef}
-        className="relative z-10 w-full cursor-grab active:cursor-grabbing overflow-hidden"
+        className="relative z-10 w-full cursor-grab active:cursor-grabbing overflow-hidden pointer-events-none"
         style={{
           clipPath: isMobile ? "none" : "inset(0 130px 0 130px)"
         }}
