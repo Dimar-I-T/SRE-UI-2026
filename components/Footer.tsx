@@ -4,10 +4,10 @@ import { FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-gradient-to-r from-[#105D48] to-[#228D72] py-6 lg:py-10">
-      <div className="max-w-[1600px] mx-auto px-4 lg:px-12">
-        <p className="text-white font-bold font-['SF_Pro_Display'] font-sans tracking-wide text-base md:text-lg lg:text-2xl xl:text-[28px] mb-6 lg:mb-10 text-center lg:text-left">
-          © 2026 Society of Renewable Energy Universitas Indonesia
+    <footer className="w-full bg-gradient-to-r from-[#105D48] to-[#228D72] py-6 lg:pt-10">
+      <div className="max-w-[1600px] mx-auto px-4 lg:px-12 lg:pb-8">
+        <p className="text-white font-bold font-['SF_Pro_Display'] font-sans tracking-wide text-base md:text-lg lg:text-xl xl:text-[22px] mb-6 lg:mb-10 text-center lg:text-left">
+          <sup>©</sup> 2026 Society of Renewable Energy Universitas Indonesia
         </p>
 
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 lg:gap-10">
@@ -18,12 +18,12 @@ export default function Footer() {
               alt="Society of Renewable Energy Universitas Indonesia footer logo"
               width={603}
               height={120}
-              className="w-[70%] md:w-[80%] max-w-[400px] lg:max-w-[603px] h-auto"
+              className="lg:w-[60%] w-[70%] max-w-[400px] lg:max-w-[603px] h-auto"
             />
           </div>
 
           {/* Social Links and Info Section */}
-          <div className="flex flex-col items-center lg:items-start gap-6 w-full lg:w-auto">
+          <div className="flex flex-col items-center lg:items-start gap-6 w-full lg:w-auto mr-20 lg:scale-90">
             {/* Instagram Link */}
             <Link
               href="https://www.instagram.com/sreui.chapter/"
