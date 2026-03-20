@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <header
-      className="w-full h-20 md:h-[138px] flex items-center justify-center relative"
+      className="w-full h-14 md:h-[96px] flex items-center justify-center relative"
       style={{ backgroundColor: '#105D48' }}
     >
       {isHome && (
@@ -41,7 +41,7 @@ export default function Header() {
           alt="Company Logo"
           width={298.28}
           height={48.19}
-          className="w-[200px] md:w-[298px] h-auto object-contain"
+          className="w-[137px] md:w-[205px] h-auto object-contain"
         />
       </Link>
 
