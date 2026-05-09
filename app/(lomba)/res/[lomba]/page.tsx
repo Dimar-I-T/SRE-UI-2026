@@ -17,7 +17,7 @@ const registrationWindows: Record<string, { start: Date; end: Date }> = {
   },
   IBCC: {
     start: localDate(2026, 4, 12),
-    end: localDate(2026, 5, 6),
+    end: localDate(2027, 5, 6),
   },
   REPPC: {
     start: localDate(2026, 4, 8),
