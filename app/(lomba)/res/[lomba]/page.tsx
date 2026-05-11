@@ -279,11 +279,12 @@ export default async function LombaPage({ params }: { params: Promise<{ lomba: s
           </div>
 
           <div className="border border-gray-200 rounded-2xl p-4 sm:p-8 bg-white/80 backdrop-blur-sm shadow-sm overflow-x-auto">
-            <svg width="100%" viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+            <svg width="100%" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
 
-              <line x1="60" y1="135" x2="620" y2="135" stroke="#7dc142" strokeWidth="1.5" strokeDasharray="6 5" />
+              <line x1="40" y1="135" x2="760" y2="135" stroke="#7dc142" strokeWidth="1.5" strokeDasharray="6 5" />
 
-              {[60, 172, 284, 396, 508, 620].map((x, i) => (
+              {/* 7 diamonds evenly spaced across wider viewBox */}
+              {[40, 160, 280, 400, 520, 640, 760].map((x, i) => (
                 <path
                   key={i}
                   d={`M${x},${135 - 14} L${x + 4},${135 - 4} L${x + 14},${135} L${x + 4},${135 + 4} L${x},${135 + 14} L${x - 4},${135 + 4} L${x - 14},${135} L${x - 4},${135 - 4} Z`}
@@ -291,25 +292,33 @@ export default async function LombaPage({ params }: { params: Promise<{ lomba: s
                 />
               ))}
 
-              {/* Top labels */}
-              <text x="172" y="65" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">{events.top[0].label}</text>
-              <text x="172" y="83" textAnchor="middle" fill="#6b7280" fontSize="11">{events.top[0].date}</text>
+              {/* 1. Open Registration — Top */}
+              <text x="60" y="65" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">Open Registration</text>
+              <text x="60" y="83" textAnchor="middle" fill="#6b7280" fontSize="11">12 Apr - 1 May 2026</text>
 
-              <text x="396" y="65" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">{events.top[1].label}</text>
-              <text x="396" y="83" textAnchor="middle" fill="#6b7280" fontSize="11">{events.top[1].date}</text>
+              {/* 2. Preliminary Stage — Bottom */}
+              <text x="160" y="176" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">Late Stage Registration</text>
+              <text x="160" y="194" textAnchor="middle" fill="#6b7280" fontSize="11">9 - 14 May 2026</text>
 
-              <text x="610" y="65" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">{events.top[2].label}</text>
-              <text x="610" y="83" textAnchor="middle" fill="#6b7280" fontSize="11">{events.top[2].date}</text>
+              {/* 3. Late Stage Registration — Top */}
+              <text x="280" y="65" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">Preliminary Stage</text>
+              <text x="280" y="83" textAnchor="middle" fill="#6b7280" fontSize="11">2 - 14 May 2026</text>
 
-              {/* Bottom labels */}
-              <text x="64" y="176" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">{events.bottom[0].label}</text>
-              <text x="64" y="194" textAnchor="middle" fill="#6b7280" fontSize="11">{events.bottom[0].date}</text>
+              {/* 4. Abstract Screening — Bottom */}
+              <text x="400" y="176" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">Abstract Screening</text>
+              <text x="400" y="194" textAnchor="middle" fill="#6b7280" fontSize="11">13 - 20 May 2026</text>
 
-              <text x="284" y="176" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">{events.bottom[1].label}</text>
-              <text x="284" y="194" textAnchor="middle" fill="#6b7280" fontSize="11">{events.bottom[1].date}</text>
+              {/* 5. Semifinalist Announcement — Top */}
+              <text x="520" y="65" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">Semifinalist Announcement</text>
+              <text x="520" y="83" textAnchor="middle" fill="#6b7280" fontSize="11">21 May 2026</text>
 
-              <text x="508" y="176" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">{events.bottom[2].label}</text>
-              <text x="508" y="194" textAnchor="middle" fill="#6b7280" fontSize="11">{events.bottom[2].date}</text>
+              {/* 6. Mentoring Semifinal — Bottom */}
+              <text x="640" y="176" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">Mentoring Semifinal</text>
+              <text x="640" y="194" textAnchor="middle" fill="#6b7280" fontSize="11">29 May 2026</text>
+
+              {/* 7. Final Stage — Top */}
+              <text x="750" y="65" textAnchor="middle" fill="#7dc142" fontWeight="700" fontSize="13">Final Stage</text>
+              <text x="750" y="83" textAnchor="middle" fill="#6b7280" fontSize="11">12 - 24 Jun 2026</text>
 
             </svg>
           </div>
