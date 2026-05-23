@@ -25,7 +25,7 @@ export default function RootLayout({
         className={`${openSans.variable} font-sans bg-white text-slate-900 antialiased`}
       >
         <Header />
-        {children}
+          {children}
         <Footer />
       </body>
     </html>

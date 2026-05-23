@@ -13,14 +13,16 @@ const competitions = [
 
 const events = [
   { label: 'Field Trip', href: '/events/field-trip' },
-  { label: 'Workshop', href: '/events/workshop' },
+  { label: 'Awarding Night', href: '/events/awarding-night' },
   { label: 'Pentahelix Talks', href: '/events/pentahelix-talks' },
 ];
 
 export default function Header() {
   const pathname = usePathname();
-  const isHome = pathname === '/';
   const isRes = pathname.startsWith('/res');
+  const isEventPage = pathname.startsWith('/events');
+  const isRESMode = isRes || isEventPage;
+  const isSRE = !isRes && !isEventPage;
   const [open, setOpen] = useState(false);
   const [resOpen, setResOpen] = useState(false);
   const [eventsOpen, setEventsOpen] = useState(false);
@@ -33,7 +35,7 @@ export default function Header() {
     >
 
       {/* ── HOME layout ── */}
-      {isHome && (
+      {isSRE && (
         <>
           {/* Logo — left */}
           <Link href="/" className="absolute left-4 md:left-10">
@@ -59,93 +61,163 @@ export default function Header() {
           {/* Desktop nav — right side */}
           <div className="hidden lg:flex items-center gap-4 absolute right-10">
             <Link
+              href="/"
+              className={`px-4 py-2 border-[1.7px] rounded-full transition-all duration-200 ease-out ${
+                pathname === '/'
+                  ? 'bg-white text-[#105D48] border-white'
+                  : 'border-white text-white hover:bg-white hover:text-[#105D48]'
+              }`}
+            >
+              Home
+            </Link>
+            <Link
               href="/all-articles"
-              className="px-4 py-2 border-[1.7px] border-white text-white rounded-full hover:bg-white hover:text-[#105D48] transition"
+              className={`px-4 py-2 border-[1.7px] rounded-full transition-all duration-200 ease-out ${
+                pathname.startsWith('/all-articles')
+                  ? 'bg-white text-[#105D48] border-white'
+                  : 'border-white text-white hover:bg-white hover:text-[#105D48]'
+              }`}
             >
               Articles
             </Link>
             <Link
               href="/all-news"
-              className="px-4 py-2 border-[1.7px] border-white text-white rounded-full hover:bg-white hover:text-[#105D48] transition"
+              className={`px-4 py-2 border-[1.7px] rounded-full transition-all duration-200 ease-out ${
+                pathname.startsWith('/all-news')
+                  ? 'bg-white text-[#105D48] border-white'
+                  : 'border-white text-white hover:bg-white hover:text-[#105D48]'
+              }`}
             >
               News
             </Link>
             <Link
-              href="/res/REMCC"
-              className="px-4 py-2 border-[1.7px] border-white text-white rounded-full hover:bg-white hover:text-[#105D48] transition"
+              href="/activities"
+              className={`px-4 py-2 border-[1.7px] rounded-full transition-all duration-200 ease-out ${
+                pathname.startsWith('/activities')
+                  ? 'bg-white text-[#105D48] border-white'
+                  : 'border-white text-white hover:bg-white hover:text-[#105D48]'
+              }`}
             >
-              Competitions
+              Activities
             </Link>
+            <Link
+              href="/res/REMCC"
+              className="
+                relative w-[95px] h-[40px]
+                rounded-full
+                bg-[#6F9777]
+                flex items-center
+                px-[5px]
+                overflow-hidden
+                transition-all duration-300
+              "
+            >
 
-            {/* Events dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setEventsOpen(!eventsOpen)}
-                className="px-4 py-2 border-[1.7px] border-white text-white rounded-full hover:bg-white hover:text-[#105D48] transition flex items-center gap-2"
-              >
-                Events
-                <span className="text-xs">{eventsOpen ? '▲' : '▼'}</span>
-              </button>
+              <Image
+                src="/logo-res.png"
+                alt="RES"
+                width={48}
+                height={22}
+                className="absolute right-[8px] object-contain"
+              />
 
-              {eventsOpen && (
-                <div className="absolute top-12 right-0 bg-[#105D48] border border-white/20 rounded-xl shadow-lg z-50 min-w-[180px] flex flex-col overflow-hidden">
-                  {events.map(({ label, href }) => (
-                    <Link
-                      key={label}
-                      href={href}
-                      className="px-5 py-3 text-white hover:bg-white/10 transition border-b border-white/10 last:border-none"
-                      onClick={() => setEventsOpen(false)}
-                    >
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+              <div
+                className="
+                  w-[30px]
+                  h-[30px]
+                  rounded-full
+                  bg-[#F5F5F5]
+                  shadow-md
+                  z-10
+                "
+              />
+            </Link>
           </div>
 
           {/* Mobile dropdown */}
           {open && (
             <div className="absolute top-14 left-0 w-full bg-[#105D48] flex flex-col items-start px-6 py-4 gap-3 lg:hidden shadow-lg z-50">
-              <Link href="/all-articles" className="text-white border-b border-white pb-2 w-full" onClick={() => setOpen(false)}>
+              <Link
+                href="/"
+                className={`w-full px-4 py-3 rounded-xl transition-all duration-200 ease-out ${
+                  pathname === '/'
+                    ? 'bg-white text-[#105D48]'
+                    : 'text-white border border-white/20'
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                Home
+              </Link>
+              <Link href="/all-articles"
+                    className={`w-full px-4 py-3 rounded-xl transition-all duration-200 ease-out ${
+                      pathname.startsWith('/all-articles')
+                        ? 'bg-white text-[#105D48]'
+                        : 'text-white border border-white/20'
+                    }`}
+                    onClick={() => setOpen(false)}
+              >
                 Articles
               </Link>
-              <Link href="/all-news" className="text-white border-b border-white pb-2 w-full" onClick={() => setOpen(false)}>
+              <Link href="/all-news"
+                    className={`w-full px-4 py-3 rounded-xl transition-all duration-200 ease-out ${
+                      pathname.startsWith('/all-news')
+                        ? 'bg-white text-[#105D48]'
+                        : 'text-white border border-white/20'
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
                 News
               </Link>
-              <Link href="/res/REMCC" className="text-white border-b border-white pb-2 w-full" onClick={() => setOpen(false)}>
-                Competitions
+              <Link href="/activities"
+                    className={`w-full px-4 py-3 rounded-xl transition-all duration-200 ease-out ${
+                      pathname.startsWith('/activities')
+                        ? 'bg-white text-[#105D48]'
+                        : 'text-white border border-white/20'
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                Activities
               </Link>
+              <Link
+              href="/res/REMCC"
+              onClick={() => setOpen(false)}
+              className="
+                relative w-[95px] h-[40px]
+                rounded-full
+                bg-[#6F9777]
+                flex items-center
+                px-[5px]
+                overflow-hidden
+                transition-all duration-300
+              "
+            >
 
-              {/* Events accordion in mobile */}
-              <button
-                className="text-white border-b border-white pb-2 w-full text-left flex justify-between items-center"
-                onClick={() => setMobileEventsOpen(!mobileEventsOpen)}
-              >
-                Events
-                <span className="text-xs">{mobileEventsOpen ? '▲' : '▼'}</span>
-              </button>
-              {mobileEventsOpen && (
-                <div className="flex flex-col gap-2 w-full pl-4">
-                  {events.map(({ label, href }) => (
-                    <Link
-                      key={label}
-                      href={href}
-                      className="text-white/80 border-b border-white/30 pb-2 w-full"
-                      onClick={() => { setOpen(false); setMobileEventsOpen(false); }}
-                    >
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              <Image
+                src="/logo-res.png"
+                alt="RES"
+                width={48}
+                height={22}
+                className="absolute right-[8px] object-contain"
+              />
+
+              <div
+                className="
+                  w-[30px]
+                  h-[30px]
+                  rounded-full
+                  bg-[#F5F5F5]
+                  shadow-md
+                  z-10
+                "
+              />
+            </Link>
             </div>
           )}
         </>
       )}
 
       {/* ── /res layout ── */}
-      {isRes && (
+      {isRESMode && (
         <>
           <Link href="/" className="absolute left-4 md:left-10">
             <Image
@@ -157,20 +229,39 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop: News + Articles */}
+          {/* Desktop: Events */}
           <div className="hidden lg:flex items-center gap-4 absolute left-[280px]">
-            <Link
-              href="/all-news"
-              className="px-6 py-2 border-[1px] font-bold border-white text-white text-xl rounded-full hover:bg-white hover:text-[#105D48] transition"
-            >
-              News
-            </Link>
-            <Link
-              href="/all-articles"
-              className="px-4 py-2 border-[1px] font-bold border-white text-white text-xl rounded-full hover:bg-white hover:text-[#105D48] transition"
-            >
-              Articles
-            </Link>
+            <div className="relative">
+              <button
+                onClick={() => setEventsOpen(!eventsOpen)}
+                className={`px-4 py-2 border rounded-full transition-all duration-200 ease-out flex items-center gap-2 ${
+                  isEventPage
+                    ? 'bg-white text-[#105D48] border-white'
+                    : 'border-white text-white hover:bg-white hover:text-[#105D48]'
+                }`}
+              >
+                Events
+                <span className="text-xs">{eventsOpen ? '▲' : '▼'}</span>
+              </button>
+              {eventsOpen && (
+                <div className="absolute top-12 left-0 bg-[#105D48] border border-white/20 rounded-xl shadow-lg z-50 min-w-[180px] flex flex-col overflow-hidden">
+                  {events.map(({ label, href }) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      className={`px-5 py-3 transition-all duration-200 ease-out border-b border-white/10 last:border-none ${
+                        pathname === href
+                          ? 'bg-white text-[#105D48]'
+                          : 'text-white hover:bg-white/10'
+                      }`}
+                      onClick={() => setEventsOpen(false)}
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Desktop: Competition pills */}
@@ -179,7 +270,7 @@ export default function Header() {
               <Link
                 key={label}
                 href={href}
-                className={`text-white text-xl font-semibold px-4 py-1.5 rounded-full border transition ${
+                className={`text-white text-xl font-semibold px-4 py-1.5 rounded-full border transition-all duration-200 ease-out ${
                   pathname === href
                     ? 'bg-white/20 border-white/60'
                     : 'border-transparent hover:bg-white/10 hover:border-white/30'
@@ -188,6 +279,39 @@ export default function Header() {
                 {label}
               </Link>
             ))}
+            <Link
+              href="/"
+              className="
+                relative w-[95px] h-[40px]
+                rounded-full
+                bg-[#6F9777]
+                flex items-center
+                px-[5px]
+                overflow-hidden
+                transition-all duration-300
+              "
+            >
+
+              <Image
+                src="/logo-sre.png"
+                alt="SRE"
+                width={48}
+                height={22}
+                className="absolute left-[8px] object-contain"
+              />
+
+              <div
+                className="
+                  absolute right-[5px]
+                  w-[30px]
+                  h-[30px]
+                  rounded-full
+                  bg-[#F5F5F5]
+                  shadow-md
+                  z-10
+                "
+              />
+            </Link>
           </div>
 
           {/* /res Mobile hamburger */}
@@ -203,18 +327,46 @@ export default function Header() {
           {/* /res Mobile dropdown */}
           {resOpen && (
             <div className="absolute top-14 left-0 w-full bg-[#105D48] flex flex-col items-start px-6 py-4 gap-3 lg:hidden shadow-lg z-50">
-              <Link href="/all-news" className="text-white border-b border-white pb-2 w-full" onClick={() => setResOpen(false)}>
-                News
-              </Link>
-              <Link href="/all-articles" className="text-white border-b border-white pb-2 w-full" onClick={() => setResOpen(false)}>
-                Articles
-              </Link>
+              <button
+                className={`pb-2 w-full text-left flex justify-between items-center border-b transition-all duration-200 ease-out ${
+                  isEventPage
+                    ? 'text-[#105D48] bg-white rounded-xl px-3 py-3 border-white'
+                    : 'text-white border-white'
+                }`}
+                onClick={() => setMobileEventsOpen(!mobileEventsOpen)}
+              >
+                Events
+                <span className="text-xs">{mobileEventsOpen ? '▲' : '▼'}</span>
+              </button>
+
+              {mobileEventsOpen && (
+                <div className="flex flex-col gap-2 w-full pl-4">
+                  {events.map(({ label, href }) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      className={`pb-2 w-full rounded-lg px-2 py-2 transition-all duration-200 ease-out ${
+                        pathname === href
+                          ? 'bg-white text-[#105D48]'
+                          : 'text-white/80 border-b border-white/30'
+                      }`}
+                      onClick={() => {
+                        setResOpen(false);
+                        setMobileEventsOpen(false);
+                      }}
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
               <p className="text-white/50 text-xs pt-1">Competitions</p>
               {competitions.map(({ label, href }) => (
                 <Link
                   key={label}
                   href={href}
-                  className={`pb-2 w-full border-b transition px-3 py-1 rounded-full ${
+                  className={`pb-2 w-full border-b transition-all duration-200 ease-out px-3 py-1 rounded-full ${
                     pathname === href
                       ? 'bg-white/20 text-white border-white/60'
                       : 'text-white border-white hover:bg-white/10'
@@ -224,119 +376,40 @@ export default function Header() {
                   {label}
                 </Link>
               ))}
-            </div>
-          )}
-        </>
-      )}
-
-      {/* ── Neither home nor /res ── */}
-      {/* ── Neither home nor /res ── */}
-      {!isHome && !isRes && (
-        <>
-          {/* Logo — left */}
-          <Link href="/" className="absolute left-4 md:left-10">
-            <Image
-              src="/logoHeader.svg"
-              alt="Company Logo"
-              width={298.28}
-              height={48.19}
-              className="w-[137px] md:w-[205px] h-auto object-contain"
-            />
-          </Link>
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="absolute right-4 flex flex-col gap-1 lg:hidden"
-          >
-            <span className="w-6 h-[2px] bg-white"></span>
-            <span className="w-6 h-[2px] bg-white"></span>
-            <span className="w-6 h-[2px] bg-white"></span>
-          </button>
-
-          {/* Desktop nav — right side */}
-          <div className="hidden lg:flex items-center gap-4 absolute right-10">
-            <Link
-              href="/all-articles"
-              className="px-4 py-2 border-[1.7px] border-white text-white rounded-full hover:bg-white hover:text-[#105D48] transition"
+              <Link
+              href="/"
+              onClick={() => setResOpen(false)}
+              className="
+                relative w-[95px] h-[40px]
+                rounded-full
+                bg-[#6F9777]
+                flex items-center
+                px-[5px]
+                overflow-hidden
+                transition-all duration-300
+              "
             >
-              Articles
+
+              <Image
+                src="/logo-sre.png"
+                alt="SRE"
+                width={48}
+                height={22}
+                className="absolute left-[8px] object-contain"
+              />
+
+              <div
+                className="
+                  absolute right-[5px]
+                  w-[30px]
+                  h-[30px]
+                  rounded-full
+                  bg-[#F5F5F5]
+                  shadow-md
+                  z-10
+                "
+              />
             </Link>
-            <Link
-              href="/all-news"
-              className="px-4 py-2 border-[1.7px] border-white text-white rounded-full hover:bg-white hover:text-[#105D48] transition"
-            >
-              News
-            </Link>
-            <Link
-              href="/res/REMCC"
-              className="px-4 py-2 border-[1.7px] border-white text-white rounded-full hover:bg-white hover:text-[#105D48] transition"
-            >
-              Competitions
-            </Link>
-
-            {/* Events dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setEventsOpen(!eventsOpen)}
-                className="px-4 py-2 border-[1.7px] border-white text-white rounded-full hover:bg-white hover:text-[#105D48] transition flex items-center gap-2"
-              >
-                Events
-                <span className="text-xs">{eventsOpen ? '▲' : '▼'}</span>
-              </button>
-
-              {eventsOpen && (
-                <div className="absolute top-12 right-0 bg-[#105D48] border border-white/20 rounded-xl shadow-lg z-50 min-w-[180px] flex flex-col overflow-hidden">
-                  {events.map(({ label, href }) => (
-                    <Link
-                      key={label}
-                      href={href}
-                      className="px-5 py-3 text-white hover:bg-white/10 transition border-b border-white/10 last:border-none"
-                      onClick={() => setEventsOpen(false)}
-                    >
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Mobile dropdown */}
-          {open && (
-            <div className="absolute top-14 left-0 w-full bg-[#105D48] flex flex-col items-start px-6 py-4 gap-3 lg:hidden shadow-lg z-50">
-              <Link href="/all-articles" className="text-white border-b border-white pb-2 w-full" onClick={() => setOpen(false)}>
-                Articles
-              </Link>
-              <Link href="/all-news" className="text-white border-b border-white pb-2 w-full" onClick={() => setOpen(false)}>
-                News
-              </Link>
-              <Link href="/res/REMCC" className="text-white border-b border-white pb-2 w-full" onClick={() => setOpen(false)}>
-                Competitions
-              </Link>
-
-              {/* Events accordion in mobile */}
-              <button
-                className="text-white border-b border-white pb-2 w-full text-left flex justify-between items-center"
-                onClick={() => setMobileEventsOpen(!mobileEventsOpen)}
-              >
-                Events
-                <span className="text-xs">{mobileEventsOpen ? '▲' : '▼'}</span>
-              </button>
-              {mobileEventsOpen && (
-                <div className="flex flex-col gap-2 w-full pl-4">
-                  {events.map(({ label, href }) => (
-                    <Link
-                      key={label}
-                      href={href}
-                      className="text-white/80 border-b border-white/30 pb-2 w-full"
-                      onClick={() => { setOpen(false); setMobileEventsOpen(false); }}
-                    >
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              )}
             </div>
           )}
         </>

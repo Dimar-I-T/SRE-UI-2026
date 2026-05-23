@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Raleway, Open_Sans } from 'next/font/google';
+import Reveal from '@/components/Reveal';
 
 const raleway = Raleway({ subsets: ['latin'] });
 const openSans = Open_Sans({ subsets: ['latin'] });
@@ -227,6 +228,7 @@ export default async function LombaPage({ params }: { params: Promise<{ lomba: s
         </div>
 
         {/* Title */}
+        <Reveal>
         <div className="mb-6 sm:mb-8">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
@@ -240,11 +242,14 @@ export default async function LombaPage({ params }: { params: Promise<{ lomba: s
             {currentLomba.subtitle}
           </h1>
         </div>
+        </Reveal>
 
         {/* Description */}
+        <Reveal delay={0.2}>
         <p className={`${openSans.className} text-gray-700 text-lg sm:text-xl md:text-2xl leading-relaxed text-justify mb-16 sm:mb-24`}>
           {currentLomba.description}
         </p>
+        </Reveal>
 
 
         {/* Theme badge */}
@@ -253,9 +258,11 @@ export default async function LombaPage({ params }: { params: Promise<{ lomba: s
         </div>
 
         {/* Theme quote */}
+        <Reveal delay={0.3}>
         <p className={`${openSans.className} text-[#7dc142] text-2xl sm:text-3xl md:text-4xl font-semibold italic text-center leading-relaxed mb-10 sm:mb-14`}>
           {currentLomba.themeQuote}
         </p>
+        </Reveal>
 
         {/* Theme description */}
         <p className={`${openSans.className} text-gray-700 text-lg sm:text-xl md:text-2xl leading-relaxed text-justify mb-16 sm:mb-24`}>

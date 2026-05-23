@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "@/components/Reveal";
 
 export default function Hero() {
   return (
@@ -24,15 +25,19 @@ export default function Hero() {
       </div>
 
       <div className="relative z-40 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-6 md:gap-8">
-        <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold leading-snug">
-          Society of Renewable Energy <br />
-          Universitas Indonesia <br />
-          2025/26
-        </h1>
+        <Reveal>
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold leading-snug">
+            Society of Renewable Energy <br />
+            Universitas Indonesia <br />
+            2025/26
+          </h1>
+      </Reveal>
         
-        <p className="text-white/90 text-lg md:text-xl lg:text-2xl max-w-5xl leading-relaxed">
-          <span className="font-bold">SRE UI</span> is a student-driven organization that champions renewable energy through engagement, education, and impact. As a hub for ideas, collaboration, and innovation, SRE UI connects academic insight with real-world action to shape a more sustainable energy future.
-        </p>
+        <Reveal delay={0.3}>
+          <p className="text-white/90 text-lg md:text-xl lg:text-2xl max-w-5xl leading-relaxed">
+            <span className="font-bold">SRE UI</span> is a student-driven organization that champions renewable energy through engagement, education, and impact. As a hub for ideas, collaboration, and innovation, SRE UI connects academic insight with real-world action to shape a more sustainable energy future.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
