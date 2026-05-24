@@ -62,7 +62,7 @@ export default function AwardingNightPage() {
                 text-transparent
               "
             >
-              AWARDING NIGHT
+              EVENT
             </span>
           </div>
         </Reveal>

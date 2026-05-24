@@ -62,7 +62,7 @@ export default function PentahelixTalksPage() {
                 text-transparent
               "
             >
-              PENTAHELIX TALKS
+              EVENT
             </span>
           </div>
         </Reveal>
@@ -404,7 +404,7 @@ export default function PentahelixTalksPage() {
           <div className="flex justify-center">
 
             <a
-              href="https://docs.google.com/forms/d/1v-AHANcKkdXJJgL8m1kdDJIUijPN5VzNWWUaxYTbrvI/edit?usp=drivesdk"
+              href="https://forms.gle/7Pj3jjFWVFNXBugj8"
               target="_blank"
               rel="noopener noreferrer"
               className="

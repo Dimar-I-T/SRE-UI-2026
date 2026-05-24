@@ -62,7 +62,7 @@ export default function FieldTripPage() {
                 text-transparent
               "
             >
-              FIELD TRIP
+              EVENT
             </span>
           </div>
         </Reveal>
@@ -347,7 +347,7 @@ export default function FieldTripPage() {
           <div className="flex justify-center">
 
             <a
-              href="https://docs.google.com/forms/d/1R-cjuF8F7pW9TuOFjjjNhB1ITLpq2JR60dF5I95mnYw/edit?usp=drivesdk"
+              href="https://forms.gle/1ur3Xq2j5DNtTr6CA"
               target="_blank"
               rel="noopener noreferrer"
               className="
